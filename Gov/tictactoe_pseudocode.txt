@@ -1,0 +1,19 @@
+import random
+
+Welcome User to Tic Tac Toe
+
+Display option for user to play against computer, play two player tic tac Toe, or exit
+
+Display that User is X's and Opposition is O'send
+
+Display options heads or tails as choices in coinflip for who goes first:
+    if user 
+
+if computer:
+
+
+if two player:
+
+if exit:
+    "Thanks for playing Tic Tac Toe - Bye Bye."
+    Then send back to main menu
