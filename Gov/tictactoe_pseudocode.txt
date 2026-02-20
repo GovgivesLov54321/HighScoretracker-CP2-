@@ -2,18 +2,39 @@ import random
 
 Welcome User to Tic Tac Toe
 
-Display option for user to play against computer, play two player tic tac Toe, or exit
+Ask user: 1 Player, 2 Player, or exit to main menu
 
-Display that User is X's and Opposition is O'send
+Create board as list of 9 spaces (1–9)
 
-Display options heads or tails as choices in coinflip for who goes first:
-    if user 
+Flip coin to determine who goes first
 
-if computer:
+While game not over:
+    Display board
+    
+    if 2 Player mode:
+        Ask current player (X or O) for move
+        Validate move
+        Place symbol
+        
+    if 1 Player mode:
+        if current player is human:
+            Ask for move
+            Validate move
+            Place symbol
+        else (computer turn):
+            Randomly choose open spot
+            Place symbol
 
+    Check if current player has won
+        If yes then announce winner and end game
 
-if two player:
+    Check if board is full
+        If yes then announce tie and end game
+
+    Switch player (X to O)
 
 if exit:
     "Thanks for playing Tic Tac Toe - Bye Bye."
     Then send back to main menu
+
+End program
