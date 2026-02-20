@@ -18,6 +18,8 @@
         #have user enter a username
         #if username is not saved in json file
             #call check
+        #else
+            #call login
 
 #function to check_username()
     #while true
@@ -49,7 +51,7 @@
             #if user_password does not match username
                 #check_password
             #else
-                #call the game file
+                #call the game main file
 
 #function for checking password as "check_passord()"
     #while true
