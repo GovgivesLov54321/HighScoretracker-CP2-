@@ -1,4 +1,4 @@
-# GNB - Tic Tac Toe Remix
+# GNB - Tic Tac Toe Remix osns
 
 import random
 
