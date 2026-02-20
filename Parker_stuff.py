@@ -33,4 +33,7 @@
 
 #JSON file saving func (list of user information)
     #call user ID finder
-    #make a dictionary with the data
+    #open the JSON with the writing and reading mode and make a dictionary with the current user information
+        #create a new user dictionary with all data taken from bg2's user creation screen
+        #add that dictionary to the end of the current JSON dictionary
+        #upload that new dictionary to the JSON
