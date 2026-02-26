@@ -1,3 +1,7 @@
 {
-    
+    "example user":{
+        "user id":1,
+        "username":"empty",
+        "password":"empty hashed password"
+    }
 }
