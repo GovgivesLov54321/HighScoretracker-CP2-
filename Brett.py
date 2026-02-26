@@ -30,7 +30,7 @@ def welcome():
             continue
 
 #funtion to enter_username()
-def enter_username():
+def enter_username(file):
     #while true
     while True:
         #have user enter a username
@@ -38,14 +38,14 @@ def enter_username():
         #if username is not saved in json file
         if username not in file:
             #call check
-            check_account()
+            check_account(file)
         #else
         else:
             #call login
             login()
 
 #function to check_username()
-def check_username():
+def check_username(file):
     #while true
     while True:
         #ask user (y) to renter username or (n) to create an account
@@ -61,7 +61,7 @@ def check_username():
         #else if username is saved
         elif username in file:
             #return username call login()
-            return username, login()
+            return file.(username), login(file)
             
         #else
         else:            
@@ -72,26 +72,32 @@ def check_username():
         
 
 #function for creating an account as "create()"
-def create():
+def create(file):
     #while code is not false
     while True:
         #user enter username
         enter_username = input("Enter your username")
-        #save username in json file
-        #display username saved
+        #if username not saved
+        if enter_username not in file:
+            #save username in json file
+            file.save(username)
+        #else if username saved
+            #display username saved
         #user enter password for username
         #save as ("username": user_username, "password": user_password) in Json file
         #return 
 
 #login function
-def login():
+def login(file):
     #while code not false run till false
     while True:
         #with username from the enter funtion
             #user enter password
             user_pass = input("Enter your password")
             #if user_password does not match username
+            if user_pass not in file:
                 #check_password
+                check_password()
             #else
                 #call the game main file
 
@@ -100,22 +106,31 @@ def check_password():
     #while true
     while True:
         #display enter 1 to re-enter password, 2 to re-enter username, 3 to make an account
-        user_clare = input("Enter 1 to re-enter password\n2 to re-enter username\n3 to make an account")
+        user_clare = input("Enter 1 to re-enter password\n2 to re-enter username\n3 to make an account\n4 to quit")
         #if user entered 1
         if user_clare == "1":
             #call login funtion
             login()
         #else if user entered 2
         elif user_clare == "2":
-            #call enter
-            ()
+            #call enter username
+            enter_username()
         #else if user entered 3
+        elif user_clare == "3":
             #call create
+            create()
+        elif user_clare == "4":
+            #quit message and quit
+            print("Good bye")
+            break
         #else
+        else:
             #display enter a vailid answer
+            print("Enter valid answer")
+            continue
 
 #funtion for checking account
-def check_account():
+def check_account(file):
     while True:
         user_check = input("Enter something to search your name (Letter, Number, Word, exedra)")
         #if username is saved
