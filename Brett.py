@@ -1,4 +1,12 @@
+#BG 1st code for high score tracker
+import json
+import hashlib
+import csv
 
+def what():
+    with open("HighScoretracker-CP2-\\hi_file.csv", newline='\n') as csvfile:
+        fieldnames = ["username", "password"]
+        reader = csv.reader(csvfile)
 #funtion to welcome user as "welcome"
 def welcome():
     while True:
@@ -61,7 +69,7 @@ def check_username(file):
         #else if username is saved
         elif username in file:
             #return username call login()
-            return file.(username), login(file)
+            return file.json(["username"]), login(file)
             
         #else
         else:            
