@@ -112,3 +112,5 @@ def play_game():
         current_player = "O" if current_player == "X" else "X"
 
 play_game()
+
+#Return info of score of player one & player two if the game was two player; and also score of player one if it's a one player game and true/false if they played against a computer (aka it was a one player game); and btw, score = how many wins they get before they exit out the game; also gotta change it up so it asks (even after a win/loss) if they wanna play again or exit and go back to main menu (osns) -- This was 26/02/2026 at approximately 9:48am - bouta smash a maths test innit

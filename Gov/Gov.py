@@ -1,14 +1,18 @@
 # GNB - 1st - Score format thing so it looks cutie-patootie
 import csv
 
+#format = three headers = rank, username, score
 
 #Read CSV from Parker's side about the scores
 
 
 #Define function read_scores_from_csv(file_path)
 def read_scores_from_csv(file_path):
-    with open("path or wtv", "r")
+    with open("path or wtv.csv", "r") as csv_file:
 #    TRY to open CSV file
+        content = csv.reader(csv_file)
+        rows = []
+
 #        READ each row
 #        STORE each row as dictionary:
 #            name
