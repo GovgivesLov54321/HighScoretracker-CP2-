@@ -4,9 +4,9 @@ import hashlib
 import csv
 
 def what():
-    with open("HighScoretracker-CP2-\\hi_file.csv", newline='\n') as csvfile:
+    with open("HighScoretracker-CP2-\\hi_file.csv", newline='\n') as file:
         fieldnames = ["username", "password"]
-        reader = csv.reader(csvfile)
+        reader = csv.reader(file)
 #funtion to welcome user as "welcome"
 def welcome():
     while True:
@@ -143,7 +143,7 @@ def check_account(file):
         user_check = input("Enter something to search your name (Letter, Number, Word, exedra)")
         #if username is saved
         if user_check in file:
-            print(file with user_check)
+            print(file user_check)
             check = input("Do you see your username? (Y/N): ").lower
             if check == "y":
                 ask = input("Do you want to enter your username? (Y/N): ").lower
