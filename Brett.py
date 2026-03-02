@@ -1,7 +1,12 @@
-#Gov Brett Parker
+#BG 1st code for high score tracker
+import json
+import hashlib
+import csv
 
-#hi
-
+def what():
+    with open("HighScoretracker-CP2-\\hi_file.csv", newline='\n') as file:
+        fieldnames = ["username", "password"]
+        reader = csv.reader(file)
 #funtion to welcome user as "welcome"
 def welcome():
     while True:
@@ -64,7 +69,7 @@ def check_username(file):
         #else if username is saved
         elif username in file:
             #return username call login()
-            return file.(username), login(file)
+            return file.json(["username"]), login(file)
             
         #else
         else:            
@@ -138,7 +143,7 @@ def check_account(file):
         user_check = input("Enter something to search your name (Letter, Number, Word, exedra)")
         #if username is saved
         if user_check in file:
-            print(file with user_check)
+            print(file user_check)
             check = input("Do you see your username? (Y/N): ").lower
             if check == "y":
                 ask = input("Do you want to enter your username? (Y/N): ").lower
