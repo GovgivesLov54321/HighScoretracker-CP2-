@@ -84,3 +84,10 @@ def user_data_saving(user_info):
         data.append(user)
         #upload that new dictionary to the JSON
         json.dump(data,user_data,indent=4)
+
+
+#JSON reader
+def JSON_reader():
+    with open("Files/user_data.json","r") as user_info:
+        data = json.load(user_info)
+        return data
