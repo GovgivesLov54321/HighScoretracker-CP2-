@@ -118,7 +118,7 @@ def check_password():
     #while true
     while True:
         #display enter 1 to re-enter password, 2 to re-enter username, 3 to make an account
-        user_clare = input("Enter 1 to re-enter password\n2 to re-enter username\n3 to make an account\n4 to quit")
+        user_clare = stupid_proofed_inputs("Enter 1 to re-enter password\n2 to re-enter username\n3 to make an account\n4 to quit: ", "number", "1", "2", "3", "4")
         #if user entered 1
         if user_clare == "1":
             #call login funtion
@@ -144,7 +144,7 @@ def check_password():
 #funtion for checking account
 def check_account(file):
     while True:
-        user_check = input("Enter something to search your name (Letter, Number, Word, exedra)")
+        user_check = stupid_proofed_inputs("Enter something to search your name (Letter, rank number, exedra): ", "none", "")
         #if username is saved
         if user_check in file:
             print("file user_chec")
