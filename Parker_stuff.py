@@ -41,11 +41,9 @@ def score_formats(csv_rows,new_row):
     #compare it to all of the other scores currently in the file
     for x in csv_rows: 
         if new_row["ratio"] > x["ratio"]:
-            print("REPLACE THIS WITH CODE: put score above this")
+            rank-=1
         elif new_row["ratio"] < x["ratio"]:
-            print("REPLACE THIS WITH CODE: put score below this")
-        else:
-            print("keep the rank the same")
+            rank+=1
     #write all the data to the csv file
     with open("Files/score_data.csv", "w") as file:
         file.writelines("rank number","username","player one score","player two score","Bot","ratio")
