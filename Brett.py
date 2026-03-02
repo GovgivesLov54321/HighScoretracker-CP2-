@@ -88,12 +88,17 @@ def create(file):
         #if username not saved
         if enter_username not in file:
             #save username in json file
-            file.save(username)
+            user_data_saving(username)
         #else if username saved
+        elif username in user_data_saving(username):
             #display username saved
-        #user enter password for username
+            print(user_data_saving(username))
+            #user enter password for username
+            enter_pass = input(f"Enter your password for {user_data_saving(username)}")
         #save as ("username": user_username, "password": user_password) in Json file
+        save_info = user_data_saving(username, enter_pass as password)
         #return 
+        return save_info
 
 #login function
 def login(file):
@@ -143,7 +148,7 @@ def check_account(file):
         user_check = input("Enter something to search your name (Letter, Number, Word, exedra)")
         #if username is saved
         if user_check in file:
-            print(file user_check)
+            print("file user_chec")
             check = input("Do you see your username? (Y/N): ").lower
             if check == "y":
                 ask = input("Do you want to enter your username? (Y/N): ").lower
