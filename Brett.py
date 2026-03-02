@@ -1,12 +1,12 @@
 #BG 1st code for high score tracker
-import json
+from Parker_stuff import *
+from Lizards_helper_funcs import *
 import hashlib
-import csv
 
 def what():
     with open("HighScoretracker-CP2-\\hi_file.csv", newline='\n') as file:
         fieldnames = ["username", "password"]
-        reader = csv.reader(file)
+        reader = json.reader(file)
 #funtion to welcome user as "welcome"
 def welcome():
     while True:
@@ -57,7 +57,7 @@ def check_username(file):
     #while true
     while True:
         #ask user (y) to renter username or (n) to create an account
-        user = input("press (y) to renter username or (n) to create an account")
+        user = stupid_proofed_inputs("press (y) to renter username or (n) to create an account (r) to restart the login prosses: ", "lower", "y", "n" ,"r")
             #if user entered (y)
         if user == "y":
             #call enter_username funtion
@@ -66,11 +66,9 @@ def check_username(file):
         elif user == "n":    
             #call create()
             create()
-        #else if username is saved
-        elif username in file:
-            #return username call login()
-            return file.json(["username"]), login(file)
-            
+        elif user == "r":
+            #call login
+            login()
         #else
         else:            
             #display enter a valid option
@@ -84,35 +82,36 @@ def create(file):
     #while code is not false
     while True:
         #user enter username
-        enter_username = input("Enter your username")
+        enter_username = stupid_proofed_inputs("Enter your username: ", "none", "_")
         #if username not saved
         if enter_username not in file:
             #save username in json file
-            user_data_saving(username)
-        #else if username saved
-        elif username in user_data_saving(username):
             #display username saved
-            print(user_data_saving(username))
+            print(f"{enter_username} saved")
             #user enter password for username
-            enter_pass = input(f"Enter your password for {user_data_saving(username)}")
-        #save as ("username": user_username, "password": user_password) in Json file
-        save_info = user_data_saving(username, enter_pass as password)
-        #return 
-        return save_info
+            enter_pass = stupid_proofed_inputs(f"Enter your password for {enter_username}: ", "none", "_")
+            user_data = [enter_username, enter_pass]
+            #save as ("username": user_username, "password": user_password) in Json file
+            user_data_saving(user_data)
+        else:
+            print(f"Username: {enter_username} already used")
+
 
 #login function
 def login(file):
     #while code not false run till false
     while True:
-        #with username from the enter funtion
-            #user enter password
-            user_pass = input("Enter your password")
-            #if user_password does not match username
-            if user_pass not in file:
-                #check_password
-                check_password()
-            #else
-                #call the game main file
+        #user enter username
+        username = input("Enter your username: ")
+        #user enter password
+        user_pass = stupid_proofed_inputs("Enter your password: ", "none", "_")
+        #if user_password does not match username
+        if user_pass or username not in file:
+            #check_password
+            check_username()
+    
+        #else
+        #call the game main file
 
 #function for checking password as "check_passord()"
 def check_password():
