@@ -58,7 +58,7 @@ def ID_find():
     with open("Files/user_data.json", "r") as user_data:
         data = json.load(user_data)
         #find the last user on it and find their user id
-        key_list = data.keys()
+        key_list = list(data.keys())
         final_index = len(key_list)-1
         final_key = key_list[final_index]
         user_id = data[final_key]["user id"]+1
@@ -74,6 +74,7 @@ def user_data_saving(user_info):
     #open the JSON with the writing and reading mode and make a dictionary with the current user information
     with open("Files/user_data.json", "a") as user_data:
         #create a new user dictionary with all data taken from bg2's user creation screen
+        user_info[1] = user_info[1].encode("utf-8")
         user = {
             "username":user_info[0],
             "password":hashlib.blake2b(user_info[1]),

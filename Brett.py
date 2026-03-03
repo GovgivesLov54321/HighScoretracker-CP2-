@@ -10,6 +10,7 @@ def what():
 #funtion to welcome user as "welcome"
 def welcome():
     while True:
+        file = JSON_reader()
         #display welcome to the highscore tracker
         print("Welcome to the highscore tracker")
         #enter a number 1 to check if you have an account 2 to login 3 to create an account 4 to exit program
@@ -18,15 +19,12 @@ def welcome():
         #if user entered 1
         if user_in == "1":
             #call enter()
-            check_account()
-        #if user entered 2
-        elif user_in == "2":
-            #call login function
-            login()
+            check_account(file)
+            login(file)
         #if user entered 3
         elif user_in == "3":
             #call create funtion
-            create()
+            create(file)
         #if user entered 4
         elif user_in == "":
             #exit/break program
@@ -114,7 +112,7 @@ def login(file):
         #call the game main file
 
 #function for checking password as "check_passord()"
-def check_password():
+def check_password(file):
     #while true
     while True:
         #display enter 1 to re-enter password, 2 to re-enter username, 3 to make an account
@@ -143,14 +141,17 @@ def check_password():
 
 #funtion for checking account
 def check_account(file):
-    while True:
-        user_check = stupid_proofed_inputs("Enter something to search your name (Letter, rank number, exedra): ", "none", "")
-        #if username is saved
-        if user_check in file:
-            print("file user_chec")
-            check = input("Do you see your username? (Y/N): ").lower
-            if check == "y":
-                ask = input("Do you want to enter your username? (Y/N): ").lower
-                if ask == "y":
-                    #call login
-                    login()
+    user_check = stupid_proofed_inputs("Enter something to search your name (Letter, rank number, exedra): ", "none", "_")
+    #if username is saved
+    if user_check in file:
+        print("file user_chec")
+        check = input("Do you see your username? (Y/N): ").lower
+        if check == "y":
+            ask = input("Do you want to enter your username? (Y/N): ").lower
+            if ask == "y":
+                #call login
+                login()
+    else:
+        print("you have no user info")
+        #call create account
+        create(file)
