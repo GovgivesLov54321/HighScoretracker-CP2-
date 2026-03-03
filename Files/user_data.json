@@ -1,7 +1,12 @@
 {
-    "example user":{
-        "user id":1,
-        "username":"empty",
-        "password":"empty hashed password"
+    "example user": {
+        "user id": 1,
+        "username": "empty",
+        "password": "empty hashed password"
+    },
+    "hi": {
+        "username": "hi",
+        "password": "bfbcbe7ade93034ee0a41a2ea7b5fd81d89bdb1d75d1af230ea37d7abe71078f1df6db4d251cbc6b58e8963db2546f0f539c80b0f08c0fdd8c0a71075c97b3e7",
+        "user id": 2
     }
 }

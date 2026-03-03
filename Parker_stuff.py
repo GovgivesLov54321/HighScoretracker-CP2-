@@ -72,17 +72,18 @@ def user_data_saving(user_info):
     #call user ID finder
     id = ID_find()
     #open the JSON with the writing and reading mode and make a dictionary with the current user information
-    with open("Files/user_data.json", "a") as user_data:
+    with open("Files/user_data.json", "r+") as user_data:
         #create a new user dictionary with all data taken from bg2's user creation screen
         user_info[1] = user_info[1].encode("utf-8")
         user = {
             "username":user_info[0],
-            "password":hashlib.blake2b(user_info[1]),
+            "password":hashlib.blake2b(user_info[1]).hexdigest(),
             "user id":id
         }
-        #add that dictionary to the end of the current JSON dictionary
         data = json.load(user_data)
-        data.append(user)
+        data[user_info[0]] = user
+        user_data.truncate(0)
+        user_data.seek(0)
         #upload that new dictionary to the JSON
         json.dump(data,user_data,indent=4)
 

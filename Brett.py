@@ -2,6 +2,7 @@
 from Parker_stuff import *
 from Lizards_helper_funcs import *
 import hashlib
+from Gov import *
 
 def what():
     with open("HighScoretracker-CP2-\\hi_file.csv", newline='\n') as file:
@@ -12,27 +13,28 @@ def welcome():
     while True:
         file = JSON_reader()
         #display welcome to the highscore tracker
-        print("Welcome to the highscore tracker")
+        print("Welcome to the highscore tracker: ")
         #enter a number 1 to check if you have an account 2 to login 3 to create an account 4 to exit program
-        print("1 to check if you have an account\n2 to login\n3 to create an account\n to exit program\n")
-        user_in = input("What do you want to do")
+        print("1 to check if you have an account\n2 to login\n3 to create an account\n4 to exit program: ")
+        user_in = stupid_proofed_inputs("What do you want to do: ", "number", "1", "2", "3", "4")
         #if user entered 1
         if user_in == "1":
             #call enter()
             check_account(file)
+        elif user_in == "2":
             login(file)
         #if user entered 3
         elif user_in == "3":
             #call create funtion
             create(file)
         #if user entered 4
-        elif user_in == "":
+        elif user_in == "4":
             #exit/break program
             break
         #else
         else:
             #display enter a valid answer
-            print("Please enter valid option")
+            print("Please enter valid option: ")
             continue
 
 #funtion to enter_username()
@@ -40,7 +42,7 @@ def enter_username(file):
     #while true
     while True:
         #have user enter a username
-        username = input("Enter your username")
+        username = input("Enter your username: ")
         #if username is not saved in json file
         if username not in file:
             #call check
@@ -48,29 +50,29 @@ def enter_username(file):
         #else
         else:
             #call login
-            login()
+            login(file)
 
 #function to check_username()
 def check_username(file):
     #while true
     while True:
         #ask user (y) to renter username or (n) to create an account
-        user = stupid_proofed_inputs("press (y) to renter username or (n) to create an account (r) to restart the login prosses: ", "lower", "y", "n" ,"r")
+        user = stupid_proofed_inputs("press (y) to renter username or (n) to create an account (r) to restart the login prosses (l) to leave: ", "lower", "y", "n" ,"r", "l")
             #if user entered (y)
         if user == "y":
             #call enter_username funtion
-            enter_username()
+            enter_username(file)
         #else if user entered n
         elif user == "n":    
             #call create()
-            create()
-        elif user == "r":
             #call login
-            login()
+            login(file)
+        elif user == "l":
+            return
         #else
         else:            
             #display enter a valid option
-            print("Enter valid option")
+            print("Enter valid option: ")
             #continue
             continue
         
@@ -80,19 +82,18 @@ def create(file):
     #while code is not false
     while True:
         #user enter username
-        enter_username = stupid_proofed_inputs("Enter your username: ", "none", "_")
-        #if username not saved
-        if enter_username not in file:
+        username = stupid_proofed_inputs("Enter a username for your account: ", "none", "_")
+        password = stupid_proofed_inputs(f"Enter a password for the {username} account: ", "none", "_")
+        if username not in file:
             #save username in json file
-            #display username saved
-            print(f"{enter_username} saved")
-            #user enter password for username
-            enter_pass = stupid_proofed_inputs(f"Enter your password for {enter_username}: ", "none", "_")
-            user_data = [enter_username, enter_pass]
+            #display use password for username
+            enter_pass = stupid_proofed_inputs(f"Enter your password for {username}: ", "none", "_")
+            user_data = [username, enter_pass]
             #save as ("username": user_username, "password": user_password) in Json file
             user_data_saving(user_data)
+            break
         else:
-            print(f"Username: {enter_username} already used")
+            print(f"Username: {username} already used: ")
 
 
 #login function
@@ -100,58 +101,25 @@ def login(file):
     #while code not false run till false
     while True:
         #user enter username
-        username = input("Enter your username: ")
+        username = stupid_proofed_inputs("Enter your username: ", "none", "_")
         #user enter password
         user_pass = stupid_proofed_inputs("Enter your password: ", "none", "_")
         #if user_password does not match username
-        if user_pass or username not in file:
-            #check_password
-            check_username()
-    
-        #else
-        #call the game main file
-
-#function for checking password as "check_passord()"
-def check_password(file):
-    #while true
-    while True:
-        #display enter 1 to re-enter password, 2 to re-enter username, 3 to make an account
-        user_clare = stupid_proofed_inputs("Enter 1 to re-enter password\n2 to re-enter username\n3 to make an account\n4 to quit: ", "number", "1", "2", "3", "4")
-        #if user entered 1
-        if user_clare == "1":
-            #call login funtion
-            login()
-        #else if user entered 2
-        elif user_clare == "2":
-            #call enter username
-            enter_username()
-        #else if user entered 3
-        elif user_clare == "3":
-            #call create
-            create()
-        elif user_clare == "4":
-            #quit message and quit
-            print("Good bye")
-            break
-        #else
+        if username in file.keys():
+            if hashlib.blake2b(user_pass.encode("utf-8")).hexdigest() == file[username]["password"]:
+                print("Log in succsesful but game is haveing technical difficalties!!!")
+                #call the game file
+                break
+            else:
+                print("Password wrong")
         else:
-            #display enter a vailid answer
-            print("Enter valid answer")
-            continue
+            print("Username not found")
+            break
+        
+
+
 
 #funtion for checking account
 def check_account(file):
-    user_check = stupid_proofed_inputs("Enter something to search your name (Letter, rank number, exedra): ", "none", "_")
-    #if username is saved
-    if user_check in file:
-        print("file user_chec")
-        check = input("Do you see your username? (Y/N): ").lower
-        if check == "y":
-            ask = input("Do you want to enter your username? (Y/N): ").lower
-            if ask == "y":
-                #call login
-                login()
-    else:
-        print("you have no user info")
-        #call create account
-        create(file)
+    for i in file.keys():
+        print(f"usernames: {i}")
