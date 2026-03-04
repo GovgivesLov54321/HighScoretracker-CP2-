@@ -2,7 +2,7 @@
 from Parker_stuff import *
 from Lizards_helper_funcs import *
 import hashlib
-from Gov import *
+from Gov.tic_tac_toe_remix import *
 
 def what():
     with open("HighScoretracker-CP2-\\hi_file.csv", newline='\n') as file:
@@ -109,7 +109,9 @@ def login(file):
             if hashlib.blake2b(user_pass.encode("utf-8")).hexdigest() == file[username]["password"]:
                 print("Log in succsesful but game is haveing technical difficalties!!!")
                 #call the game file
-                break
+                game_stats = play_game()
+                game_stats.insert(1,username)
+                score_formats(csv_reader(),game_stats())
             else:
                 print("Password wrong")
         else:
