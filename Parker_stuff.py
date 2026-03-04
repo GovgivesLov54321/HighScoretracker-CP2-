@@ -46,8 +46,8 @@ def score_formats(csv_rows,new_row):
             rank+=1
     #write all the data to the csv file
     with open("Files/score_data.csv", "w") as file:
-        file.writelines("rank number","username","player one score","player two score","Bot","ratio")
-        file.writelines(csv_rows)
+        file.writeheard("rank number","username","player one score","player two score","Bot","ratio")
+        file.writeline(csv_rows)
     #return the list of properly ranked stuff
     return csv_rows
 

@@ -110,7 +110,7 @@ def login(file):
                 #call the game file
                 game_stats = play_game()
                 game_stats.insert(1,username)
-                score_formats(csv_reader(),game_stats())
+                score_formats(csv_reader(),game_stats)
             else:
                 print("Password wrong")
         else:
