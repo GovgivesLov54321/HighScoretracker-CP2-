@@ -22,13 +22,14 @@ def csv_reader():
 
 #incoming data (rank number (blank):thing, username:thing,p1 score:thing,p2 score:thing,bot y/n:bool,ratio )
 def new_row_format(data):
+    ratio = f"{data[1]}:{data[2]}"
     proper_row = {
         "rank number":None,
         "username":data[0],
         "player one score":data[1],
         "player two score":data[2],
         "Bot":data[3],
-        "ratio":data[1]/data[2]
+        "ratio":ratio
     }
     return proper_row
 
@@ -39,6 +40,7 @@ def score_formats(csv_rows,new_row):
     rank = 1
     #use the incoming new row which has (blank,username,p1 score, p2 score, p2 bot, win/lose ratio)
     #compare it to all of the other scores currently in the file
+    new_row_format(new_row)
     for x in csv_rows: 
         if new_row["ratio"] > x["ratio"]:
             rank-=1
@@ -46,8 +48,11 @@ def score_formats(csv_rows,new_row):
             rank+=1
     #write all the data to the csv file
     with open("Files/score_data.csv", "w") as file:
-        file.writeheard("rank number","username","player one score","player two score","Bot","ratio")
-        file.writeline(csv_rows)
+        fieldnames = ["rank number","username","player one score","player two score","Bot","ratio"]
+        writer = csv.DictWriter(file,fieldnames=fieldnames)
+        writer.writeheader()
+        for x in csv_rows:
+            writer.writerow({"rank number":x["rank number"],"username":x["username"],"player one score":x["player one score"],"player two score":x["player two score"],"Bot":x["Bot"],"ratio":x["ratio"]})
     #return the list of properly ranked stuff
     return csv_rows
 

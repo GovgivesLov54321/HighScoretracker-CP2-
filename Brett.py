@@ -109,8 +109,9 @@ def login(file):
             if hashlib.blake2b(user_pass.encode("utf-8")).hexdigest() == file[username]["password"]:
                 #call the game file
                 game_stats = play_game()
-                game_stats.insert(1,username)
+                game_stats.insert(0,username)
                 score_formats(csv_reader(),game_stats)
+                break
             else:
                 print("Password wrong")
         else:
