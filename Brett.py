@@ -107,7 +107,6 @@ def login(file):
         #if user_password does not match username
         if username in file.keys():
             if hashlib.blake2b(user_pass.encode("utf-8")).hexdigest() == file[username]["password"]:
-                print("Log in succsesful but game is haveing technical difficalties!!!")
                 #call the game file
                 game_stats = play_game()
                 game_stats.insert(1,username)
