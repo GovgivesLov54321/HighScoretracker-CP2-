@@ -7,11 +7,8 @@ import csv
 
 
 #Define function read_scores_from_csv(file_path)
-def read_scores_from_csv(file_path):
-    with open("path or wtv.csv", "r") as csv_file:
-#    TRY to open CSV file
-        content = csv.reader(csv_file)
-        rows = []
+def score_order():
+    from Parker_stuff import csv_reader
 
 #        READ each row
 #        STORE each row as dictionary:
@@ -28,6 +25,8 @@ def read_scores_from_csv(file_path):
 
 
 #Define function (scores_list)
+def scores_list():
+    print("===== HIGH SCORES =====")
 #    Print "===== HIGH SCORES ====="
 
 #    Sort scores_list by wins (highest first)
