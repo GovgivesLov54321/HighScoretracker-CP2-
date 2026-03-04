@@ -1,5 +1,6 @@
 # GNB - 1st - Score format thing so it looks cutie-patootie
 import csv
+from Parker_stuff import csv_reader
 
 #format = three headers = rank, username, score
 
@@ -8,28 +9,26 @@ import csv
 
 #Define function read_scores_from_csv(file_path)
 def score_order():
-    from Parker_stuff import csv_reader
+    rows = csv_reader()
+    ordered_rows = []
+    for row in rows:
+        ordered_rows.insert(row["rank number"], row)
+    return ordered_rows
 
-#        READ each row
-#        STORE each row as dictionary:
-#            name
-#            wins
-#            losses
-#            ties
-#        ADD dictionary to scores list
-#    IF file does not exist
-#        CREATE empty file with header:
-#            name,wins,losses,ties
-#        RETURN empty list
-#    RETURN scores list
+
 
 
 #Define function (scores_list)
 def scores_list():
+    ordered_rows = score_order()
     print("===== HIGH SCORES =====")
 #    Print "===== HIGH SCORES ====="
 
 #    Sort scores_list by wins (highest first)
+    for ordered_row in ordered_rows:
+        print(f"RANK NUMBER {ordered_row["rank number"]} == USERNAME {ordered_row["username"]} == P1 SCORE {ordered_row["player one score"]} == P2 SCORE {ordered_row["player two score"]} == PLAYED AGAINST BOT? {ordered_row["Bot"]}")
+    
+
 
 #   For each player in scores_list
 #        Print formatted line:

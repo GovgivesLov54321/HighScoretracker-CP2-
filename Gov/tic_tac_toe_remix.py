@@ -3,6 +3,7 @@
 import random
 
 
+
 def display_board(board):
     print()
     print(f"{board[0]} | {board[1]} | {board[2]}")
@@ -52,64 +53,88 @@ def get_ai_move(board):
 
 
 def play_game():
+    playing = True
+    p1_score = 0
+    p2_score = 0
 
-    print("Welcome to Tic Tac Toe!")
+    while playing:
+            
 
-    mode = input("1 Player or 2 Player? (1 or 2): ").strip()
+        print("Welcome to Tic Tac Toe!")
 
-    board = [str(i) for i in range(1, 10)]
+        mode = input("1 Player or 2 Player? (1 or 2): ").strip()
 
-    # Coin flip
-    coin = random.choice(["H", "T"])
-    user_call = input("Coin flip! Choose H or T: ").strip().upper()
+        board = [str(i) for i in range(1, 10)]
 
-    if user_call == coin:
-        current_player = "X"
-        print("You won the coin flip! X goes first.")
-    else:
-        current_player = "O"
-        print("You lost the coin flip! O goes first.")
+        # Coin flip
+        coin = random.choice(["H", "T"])
+        user_call = input("Coin flip! Choose H or T: ").strip().upper()
 
-    game_over = False
-
-    while not game_over:
-        display_board(board)
-
-        # 2 player mode
-        if mode == "2":
-            print(f"Player {current_player}'s turn")
-            move = get_human_move(board)
-
-        # 1 player mode
-        elif mode == "1":
-            if current_player == "X":
-                print("Your turn (X)")
-                move = get_human_move(board)
-            else:
-                move = get_ai_move(board)
-
+        if user_call == coin:
+            current_player = "X"
+            player_1 = "X"
+            print("You won the coin flip! X goes first.")
         else:
-            print("Invalid mode. Defaulting to 2 Player.")
-            move = get_human_move(board)
+            current_player = "O"
+            player_2 = "O"
+            print("You lost the coin flip! O goes first.")
 
-        board[move] = current_player
+        game_over = False
 
-        # Check win
-        if check_win(board, current_player):
+        while not game_over:
             display_board(board)
-            print(f"{current_player} wins!")
-            game_over = True
-            continue
 
-        # Check tie
-        if all(space in ["X", "O"] for space in board):
-            display_board(board)
-            print("It's a tie!")
-            game_over = True
-            continue
 
-        # Switch player
-        current_player = "O" if current_player == "X" else "X"
+            # 2 player mode
+            if mode == "2":
+                print(f"Player {current_player}'s turn")
+                move = get_human_move(board)
+                bot_played = False
+                
+
+            # 1 player mode
+            elif mode == "1":
+                if current_player == "X":
+                    print("Your turn (X)")
+                    move = get_human_move(board)
+                else:
+                    move = get_ai_move(board)
+                bot_played = True
+
+            else:
+                print("Invalid mode. Defaulting to 2 Player.")
+                move = get_human_move(board)
+
+            board[move] = current_player
+
+            # Check win
+            if check_win(board, current_player):
+                display_board(board)
+                print(f"{current_player} wins!")
+                game_over = True
+                
+                if current_player == "O":
+                    p2_score += 1
+                else:
+                    p1_score += 1
+
+            # Check tie
+            if all(space in ["X", "O"] for space in board):
+                display_board(board)
+                print("It's a tie!")
+                game_over = True
+                continue
+
+            # Switch player
+            current_player = "O" if current_player == "X" else "X"
+        all_games_over = input("Do you want to play again? (Y/N): ").strip().capitalize()
+        if all_games_over == "Y":
+            continue
+        else:
+            print("Thanks for playing TicTacToe.")
+            break
+    return [p1_score, p2_score, bot_played]            
+
 
 play_game()
 
