@@ -22,7 +22,7 @@ def score_order():
 def scores_list():
     ordered_rows = score_order()
     print("===== HIGH SCORES =====")
-#    Print "===== HIGH SCORES ====="
+#    Print "===== HIGH SCORES =====" 
 
 #    Sort scores_list by wins (highest first)
     for ordered_row in ordered_rows:
