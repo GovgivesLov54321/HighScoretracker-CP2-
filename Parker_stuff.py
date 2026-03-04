@@ -16,7 +16,7 @@ def csv_reader():
 
         #make each of the lines a list of dictionaries
         for x in content:
-            rows.append({headers[0]:x[0],headers[1]:x[1],headers[2]:x[2],headers[3]:x[3],headers[4]:x[4],headers[5]:x[5]})
+            rows.append({headers[0]:x[0],headers[1]:x[1],headers[2]:x[2],headers[3]:x[3],headers[4]:x[4]})
         #return the list
         return rows
 
@@ -40,12 +40,19 @@ def score_formats(csv_rows,new_row):
     rank = 1
     #use the incoming new row which has (blank,username,p1 score, p2 score, p2 bot, win/lose ratio)
     #compare it to all of the other scores currently in the file
-    new_row_format(new_row)
+    new_row = new_row_format(new_row)
     for x in csv_rows: 
-        if new_row["ratio"] > x["ratio"]:
-            rank-=1
-        elif new_row["ratio"] < x["ratio"]:
-            rank+=1
+        try:
+            if new_row["ratio"] > x["ratio"]:
+                rank-=1
+            elif new_row["ratio"] < x["ratio"]:
+                rank+=1
+        except:
+            if new_row["ratio"] > csv_rows[4]:
+                rank-=1
+            elif new_row["ratio"] < csv_rows[4]:
+                rank+=1
+    csv_rows.append(new_row)
     #write all the data to the csv file
     with open("Files/score_data.csv", "w") as file:
         fieldnames = ["rank number","username","player one score","player two score","Bot","ratio"]
