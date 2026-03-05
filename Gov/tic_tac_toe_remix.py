@@ -122,6 +122,8 @@ def play_game():
             if all(space in ["X", "O"] for space in board):
                 display_board(board)
                 print("It's a tie!")
+                p1_score+=1
+                p2_score+=1
                 game_over = True
                 continue
 
