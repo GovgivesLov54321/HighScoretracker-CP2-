@@ -19,6 +19,8 @@ def welcome():
         #enter a number 1 to check if you have an account 2 to login 3 to create an account 4 to exit program
         print("1 to check if you have an account\n2 to login\n3 to create an account\n4 to look at the leaderboard\n5 to exit program: ")
         user_in = stupid_proofed_inputs("What do you want to do: ", "number", "1", "2", "3", "4","5")
+        print("1 to check if you have an account\n2 to login\n3 to create an account\n4 to look at the leaderboard\n5 to exit program: ")
+        user_in = stupid_proofed_inputs("What do you want to do: ", "number", "1", "2", "3", "4","5")
         #if user entered 1
         if user_in == "1":
             #call enter()
@@ -31,6 +33,11 @@ def welcome():
             create(file)
         #if user entered 4
         elif user_in == "4":
+            #show scores
+            scores_list(csv_reader())
+        elif user_in == "5":
+            #break/leave program
+            print("Leaving program")
             #show scores
             scores_list(csv_reader())
         elif user_in == "5":
@@ -64,6 +71,7 @@ def create(file):
     while True:
         #user enter username
         print("Must make an account then login")
+        print("Must make an account then login")
         username = stupid_proofed_inputs("Enter a username for your account: ", "none", "_")
         if username not in file:
             #save username in json file
@@ -91,7 +99,9 @@ def login(file):
                 #call the game file
                 game_stats = play_game()
                 game_stats.insert(0,username)
+                game_stats.insert(0,username)
                 score_formats(csv_reader(),game_stats)
+                break
                 break
             else:
                 print("Password wrong")
@@ -106,3 +116,4 @@ def login(file):
 def check_account(file):
     for i in file.keys():
         print(f"usernames: {i}")
+
