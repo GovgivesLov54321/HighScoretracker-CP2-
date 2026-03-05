@@ -6,6 +6,8 @@ import csv
 import json
 #more info: add a rank for each score to the csv so it will be formatted like the following: (rank number),(username),(player one score),(player 2 score), (was player two a bot), (win to lose ratio)
 
+#SWITCH THE RELATIVE PATHS BACK TO WHERE THEY WERE AFTER COMPLETED DEVELOPMENT
+
 #reader func for csv
 def csv_reader():
     #open the file for reading
@@ -16,13 +18,17 @@ def csv_reader():
 
         #make each of the lines a list of dictionaries
         for x in content:
-            rows.append({headers[0]:x[0],headers[1]:x[1],headers[2]:x[2],headers[3]:x[3],headers[4]:x[4]})
+            rows.append({headers[0]:x[0],headers[1]:x[1],headers[2]:x[2],headers[3]:x[3],headers[4]:x[4],headers[5]:x[5]})
         #return the list
         return rows
 
 #incoming data (rank number (blank):thing, username:thing,p1 score:thing,p2 score:thing,bot y/n:bool,ratio )
 def new_row_format(data):
-    ratio = f"{data[1]}:{data[2]}"
+    try:
+        ratio = float(data[1])/float(data[2])
+    #for divide by zero error:
+    except:
+        ratio = data[1]
     proper_row = {
         "rank number":None,
         "username":data[0],
@@ -37,24 +43,26 @@ def new_row_format(data):
 
 #function for rank finding
 def score_formats(csv_rows,new_row):
+    
+    def get_ratio(csv_row):
+        return float(csv_row["ratio"])
     rank = 1
+
     #use the incoming new row which has (blank,username,p1 score, p2 score, p2 bot, win/lose ratio)
     #compare it to all of the other scores currently in the file
     new_row = new_row_format(new_row)
-    for x in csv_rows: 
-        try:
-            if new_row["ratio"] > x["ratio"]:
-                rank-=1
-            elif new_row["ratio"] < x["ratio"]:
-                rank+=1
-        except:
-            if new_row["ratio"] > csv_rows[4]:
-                rank-=1
-            elif new_row["ratio"] < csv_rows[4]:
-                rank+=1
     csv_rows.append(new_row)
+
+    #what .sort does is take numerical values and put them in order from greatest to least, if reverse is active, it does least to greatest
+    csv_rows.sort(key=get_ratio,reverse=True)
+
+    #after they are sorted so highest is on the top we can just assign each of the inline scores a rank one after another in order
+    for row in csv_rows:
+        row["rank number"] = rank
+        rank+=1
+
     #write all the data to the csv file
-    with open("Files/score_data.csv", "w") as file:
+    with open("Files/score_data.csv", "w",newline="") as file:
         fieldnames = ["rank number","username","player one score","player two score","Bot","ratio"]
         writer = csv.DictWriter(file,fieldnames=fieldnames)
         writer.writeheader()
