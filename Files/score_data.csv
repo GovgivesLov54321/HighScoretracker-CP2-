@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 rank number,username,player one score,player two score,Bot,ratio
 1,Crazykitty127,2,0,True,2
 2,Crazykitty127,1,0,True,1
 3,Pluh,1,0,True,1
+=======
+rank number,username,player one score,player two score,Bot,ratio
+1,Crazykitty127,2,0,True,2
+2,Crazykitty127,1,0,True,1
+3,Allyiskool,1,0,True,1
+>>>>>>> 912db63e9fa397b8c75c2ed3f55f051b0d8e53b4
