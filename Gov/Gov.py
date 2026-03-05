@@ -1,32 +1,21 @@
 # GNB - 1st - Score format thing so it looks cutie-patootie
-import csv
+
 from Parker_stuff import csv_reader
 
 #format = three headers = rank, username, score
 
 #Read CSV from Parker's side about the scores
 
-
-#Define function read_scores_from_csv(file_path)
-def score_order():
-    rows = csv_reader()
-    ordered_rows = []
-    for row in rows:
-        ordered_rows.insert(row["rank number"], row)
-    return ordered_rows
-
-
-
+#*USEFUL MENTION* I sorted them so don't worry about it anymore
 
 #Define function (scores_list)
-def scores_list():
-    ordered_rows = score_order()
+def scores_list(csv_rows):
     print("===== HIGH SCORES =====")
 #    Print "===== HIGH SCORES =====" 
 
 #    Sort scores_list by wins (highest first)
-    for ordered_row in ordered_rows:
-        print(f"RANK NUMBER {ordered_row["rank number"]} == USERNAME {ordered_row["username"]} == P1 SCORE {ordered_row["player one score"]} == P2 SCORE {ordered_row["player two score"]} == PLAYED AGAINST BOT? {ordered_row["Bot"]}")
+    for row in csv_rows:
+        print(f"RANK NUMBER {row["rank number"]} == USERNAME {row["username"]} == P1 SCORE {row["player one score"]} == P2 SCORE {row["player two score"]} == PLAYED AGAINST BOT? {row["Bot"]} == RATIO FOR SCORING: {row["ratio"]}")
     
 
 
