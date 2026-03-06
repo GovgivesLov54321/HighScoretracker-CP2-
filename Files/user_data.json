@@ -13,16 +13,5 @@
         "username": "dogo1017",
         "password": "63d4aab06c45eb665d686fa1e62d70a0fa8e37e94cee9034c86002e3137472d3081b8a5705855ff3881c1daeb2f75ffb970ed8489fff5e7f875fdef1129568bb",
         "user id": 5
-    },
-<<<<<<< HEAD
-    "Pluh": {
-        "username": "Pluh",
-        "password": "da77bd2a1d857d88b31de27536b81df7f005027d4f847667df13a0569b6048e0454ce9480827789547cc174060c4f388866ebb0209929b0de414cc9ac571c421",
-=======
-    "Allyiskool": {
-        "username": "Allyiskool",
-        "password": "73776e3e4cd3684316d26ec93cc6c438497ace5b08e359698667af6dbded88b6750ba0b2c11ba7d52b69180f1924884a158d0b83d87ca9c65d2dae9d73387e43",
->>>>>>> 912db63e9fa397b8c75c2ed3f55f051b0d8e53b4
-        "user id": 6
     }
 }
