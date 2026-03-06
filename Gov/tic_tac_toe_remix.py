@@ -1,5 +1,6 @@
 # GNB - Tic Tac Toe Remix osns
-
+from Lizards_helper_funcs import *
+from Brett import *
 import random
 
 
@@ -29,11 +30,7 @@ def check_win(board, player):
 
 def get_human_move(board):
     while True:
-        choice = input("Choose a spot (1-9): ")
-
-        if not choice.isdigit():
-            print("Enter a number 1-9.")
-            continue
+        choice = stupid_proofed_inputs("Choose a spot (1-9): ", "number", "1", "2", "3", "4", "5", "6", "7", "8", "9")
 
         choice = int(choice)
 
@@ -62,13 +59,13 @@ def play_game():
 
         print("Welcome to Tic Tac Toe!")
 
-        mode = input("1 Player or 2 Player? (1 or 2): ").strip()
+        mode = stupid_proofed_inputs("1 Player or 2 Player? (1 or 2): ", "number", "1", "2")
 
         board = [str(i) for i in range(1, 10)]
 
         # Coin flip
         coin = random.choice(["H", "T"])
-        user_call = input("Coin flip! Choose H or T: ").strip().upper()
+        user_call = stupid_proofed_inputs("Coin flip! Choose H or T: ", "lower", "h", "t")
 
         if user_call == coin:
             current_player = "X"
@@ -129,8 +126,8 @@ def play_game():
 
             # Switch player
             current_player = "O" if current_player == "X" else "X"
-        all_games_over = input("Do you want to play again? (Y/N): ").strip().capitalize()
-        if all_games_over == "Y":
+        all_games_over = stupid_proofed_inputs("Do you want to play again? (Y/N): ", "lower", "y", "n")
+        if all_games_over == "y":
             continue
         else:
             print("Thanks for playing TicTacToe.")
