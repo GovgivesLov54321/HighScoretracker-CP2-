@@ -13,5 +13,10 @@
         "username": "dogo1017",
         "password": "63d4aab06c45eb665d686fa1e62d70a0fa8e37e94cee9034c86002e3137472d3081b8a5705855ff3881c1daeb2f75ffb970ed8489fff5e7f875fdef1129568bb",
         "user id": 5
+    },
+    "asdf": {
+        "username": "asdf",
+        "password": "236a30d037b3484f99da67dd8292e18b72f71c578c8c6f2cfda31038fa5599dc9f9f0a06096ad6986265d5b34033b06a14a9ee0a51b2881609e6a8521724e37b",
+        "user id": 6
     }
 }
