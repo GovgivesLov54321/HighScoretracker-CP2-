@@ -5,10 +5,7 @@ import hashlib
 from Gov.tic_tac_toe_remix import *
 from Gov.Gov import *
 import os
-def what():
-    with open("HighScoretracker-CP2-\\hi_file.csv", newline='\n') as file:
-        fieldnames = ["username", "password"]
-        reader = json.reader(file)
+
 #funtion to welcome user as "welcome"
 def welcome():
     while True:
