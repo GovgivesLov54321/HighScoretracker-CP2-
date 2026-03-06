@@ -1,7 +1,7 @@
 # GNB - Tic Tac Toe Remix osns
 
 import random
-
+import os
 
 
 def display_board(board):
@@ -82,6 +82,7 @@ def play_game():
         game_over = False
 
         while not game_over:
+            os.system("cls")
             display_board(board)
 
 
@@ -109,6 +110,7 @@ def play_game():
 
             # Check win
             if check_win(board, current_player):
+                os.system("cls")
                 display_board(board)
                 print(f"{current_player} wins!")
                 game_over = True
@@ -120,6 +122,7 @@ def play_game():
 
             # Check tie
             if all(space in ["X", "O"] for space in board):
+                os.system("cls")
                 display_board(board)
                 print("It's a tie!")
                 p1_score+=1
